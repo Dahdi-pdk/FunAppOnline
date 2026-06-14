@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Center — Local Edition</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Clash Display"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            surface: '#FFFFFF',
+            ink: '#0A0A0A',
+            cream: '#FDFBF7',
+            brand: {
+              yellow: '#FFF066',
+              lavender: '#D9C2FF',
+              mint: '#E0F4EA',
+              coral: '#FFB3A6',
+              teal: '#4DE1C1',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Phosphor Icons via CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Local styles + database -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="database.js"></script>
+</head>
+
+<body class="font-body bg-cream text-ink min-h-screen">
+  <!-- Navbar -->
+  <header id="navbar"></header>
+
+  <!-- Main routed content -->
+  <main id="app" class="pb-24"></main>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-cream border-t-4 border-ink mt-16">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-12 py-10 flex flex-wrap items-center justify-between gap-4">
+      <div class="font-display font-black text-2xl">FUN CENTER<span class="text-brand-yellow">.</span></div>
+      <div class="text-xs font-bold uppercase tracking-widest opacity-70">Local Edition · Powered by database.js</div>
+    </div>
+  </footer>
+
+  <!-- Persistent music player bar -->
+  <div id="player-bar"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

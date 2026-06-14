@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Center — Content Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { display: ['"Clash Display"','sans-serif'], body: ['"DM Sans"','sans-serif'] },
+        colors: { surface:'#FFFFFF', ink:'#0A0A0A', cream:'#FDFBF7',
+          brand:{ yellow:'#FFF066', lavender:'#D9C2FF', mint:'#E0F4EA', coral:'#FFB3A6', teal:'#4DE1C1' } } } }
+    };
+  </script>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="database.js"></script>
+</head>
+<body class="font-body bg-cream text-ink min-h-screen">
+  <!-- Password gate -->
+  <div id="gate" class="min-h-screen flex items-center justify-center px-6 py-12">
+    <form id="gate-form" class="bg-surface nb-border nb-shadow-lg p-8 sm:p-12 w-full max-w-md">
+      <div class="w-16 h-16 bg-brand-yellow nb-border nb-shadow-sm flex items-center justify-center mb-6"><i class="ph-bold ph-lock text-3xl"></i></div>
+      <h1 class="font-display font-black text-3xl sm:text-4xl mb-2">Content Manager.</h1>
+      <p class="font-medium mb-8 text-ink/70">Masukin password buat kelola database.</p>
+      <label class="block font-black uppercase text-xs tracking-widest mb-2">Password</label>
+      <input id="gate-pass" type="password" data-testid="admin-password-input" class="w-full bg-white nb-border px-4 py-4 font-bold mb-6 outline-none focus:bg-brand-mint" placeholder="••••••••" />
+      <button type="submit" data-testid="admin-login-btn" class="w-full bg-ink text-cream nb-border nb-shadow px-6 py-4 font-black uppercase tracking-widest nb-press nb-hover">Masuk</button>
+      <div class="mt-6 text-xs font-bold uppercase tracking-widest opacity-60 text-center">Default: <code class="bg-brand-yellow px-2 py-1">dev123</code></div>
+    </form>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dash" class="hidden">
+    <header class="bg-cream border-b-4 border-ink sticky top-0 z-50">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-8 py-3 flex items-center gap-3 flex-wrap">
+        <a href="index.html" class="font-display font-black text-xl tracking-tight">FUN<span class="text-brand-coral">CENTER</span>.</a>
+        <span class="bg-brand-teal nb-border-2 px-2 py-0.5 font-black uppercase text-[10px] tracking-widest">Content Manager</span>
+        <div class="ml-auto flex items-center gap-2">
+          <button id="btn-export" data-testid="export-db-btn" class="bg-ink text-cream nb-border-2 nb-shadow-sm px-3 py-2 font-black uppercase text-xs tracking-widest nb-press inline-flex items-center gap-1"><i class="ph-bold ph-floppy-disk"></i> Export database.js</button>
+          <button id="btn-save" data-testid="save-file-btn" class="bg-brand-yellow nb-border-2 nb-shadow-sm px-3 py-2 font-black uppercase text-xs tracking-widest nb-press inline-flex items-center gap-1"><i class="ph-bold ph-download-simple"></i> Simpan ke File</button>
+          <a href="index.html" class="bg-surface nb-border-2 nb-shadow-sm px-3 py-2 font-black uppercase text-xs tracking-widest nb-press inline-flex items-center gap-1"><i class="ph-bold ph-eye"></i> Lihat Situs</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-8 py-8">
+      <div class="bg-brand-lavender nb-border nb-shadow-sm p-4 mb-8 font-bold text-sm flex items-start gap-3">
+        <i class="ph-bold ph-info text-xl shrink-0"></i>
+        <span>Perubahan tersimpan otomatis di browser ini (localStorage) & langsung tampil di situs. Untuk membuat permanen/dibagikan, klik <b>Export database.js</b> lalu ganti file <code>database.js</code>.</span>
+      </div>
+
+      <!-- Tabs -->
+      <div id="tabs" class="flex flex-wrap mb-8 nb-border w-full">
+        <button data-tab="apps" class="tab-btn flex-1 font-black uppercase text-xs sm:text-sm tracking-widest border-r-4 border-ink px-4 py-3 flex items-center justify-center gap-2"><i class="ph-bold ph-app-window"></i> Apps</button>
+        <button data-tab="blogs" class="tab-btn flex-1 font-black uppercase text-xs sm:text-sm tracking-widest border-r-4 border-ink px-4 py-3 flex items-center justify-center gap-2"><i class="ph-bold ph-article"></i> Blog</button>
+        <button data-tab="videos" class="tab-btn flex-1 font-black uppercase text-xs sm:text-sm tracking-widest border-r-4 border-ink px-4 py-3 flex items-center justify-center gap-2"><i class="ph-bold ph-film-strip"></i> Video</button>
+        <button data-tab="music" class="tab-btn flex-1 font-black uppercase text-xs sm:text-sm tracking-widest px-4 py-3 flex items-center justify-center gap-2"><i class="ph-bold ph-music-note"></i> Music</button>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div id="form-area"></div>
+        <div id="list-area"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
